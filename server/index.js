@@ -24,16 +24,7 @@ app.post('/register', async (req,resp)=>{
     resp.send(data);
 });      
 
-// app.delete('/delete/:_id',async (req,resp)=>{
-//     console.log(req.params)
-//     let data = await usersData.deleteOne(req.params);
-//     resp.send(data);
-// });      
-// app.put('/update/:_id',async (req,resp)=>{
-//     console.log(req.params)
-//     let data = await usersData.updateOne(req.params, {$set:req.body});
-//     resp.send(data);
-// });    
+
 
 app.post('/login', async (req,resp)=>{
     console.log(req.body);
@@ -64,5 +55,39 @@ app.get('/productlist',async (req,resp)=>{
         resp.send({result:"no result found"});
     }
 });      
+
+app.delete('/product/:id',async (req,resp)=>{
+    console.log(req.params.id)
+    let result = await productsData.deleteOne({_id:req.params.id});
+    resp.send(result);
+});      
+
+app.get('/product/:id',async (req,resp)=>{
+    let result = await productsData.findOne({_id:req.params.id});
+    if(result){
+        resp.send(result);
+    }else{
+        resp.send({result:"no result found"});
+    }
+});      
+
+app.put('/product/:id',async (req,resp)=>{
+    console.log(req.params)
+    let result = await productsData.updateOne({_id:req.params.id}, {$set:req.body});
+    resp.send(result);
+});    
+
+app.get('/search/:key',async (req,resp)=>{
+    let result = await productsData.find({
+        "$or":[
+            {name:{ $regex : req.params.key }},
+            {price:{ $regex : req.params.key }},
+            {category:{ $regex : req.params.key }},
+            {company:{ $regex : req.params.key }}
+        ]
+    });
+    resp.send(result);
+});    
+
 
 app.listen(4000); 

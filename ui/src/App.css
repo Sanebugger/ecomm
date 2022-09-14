@@ -1,7 +1,7 @@
 .nav-ul {
   padding: 5px;
   margin: 0px;
-  background-color: skyblue;
+  background-color: rgb(55, 103, 122);
 }
 .nav-ul li{
   display:  inline-block;
@@ -95,6 +95,9 @@
   text-align: center;
   margin-top: 50px;
 }
+.product-list-label {
+  font-weight: bold;
+}
 
 .product-list ul li {
   display: inline-block;
@@ -106,7 +109,14 @@
 .product-list ul{
   margin: 0;
 }
-
+.delete{
+  background-color: red;
+  cursor: pointer;
+}
+.update{
+  background-color: yellow;
+  cursor: pointer;
+}
 .search-product-box {
   width: 400px;
   margin: 20px;

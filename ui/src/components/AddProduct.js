@@ -8,7 +8,7 @@ export default function AddProduct() {
     const [company, setcompany] = useState("");
     const [error, seterror] = useState(false);
     
-    const addProductFn= async ()=>{
+    const addProductFn = async ()=>{
         console.log(name,price,category,company)
 
                                          if(!name || !price || !category || !company){
